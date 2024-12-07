@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fibonacci Generator</title>
+    <style>
+        /* General Reset */
+        body, h1, p, button, input {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* Body Styling */
+        body {
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        /* Container Styling */
+        .container {
+            background: #2c2c2c;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #64ffda;
+            margin-bottom: 1rem;
+        }
+
+        input[type="number"] {
+            padding: 10px;
+            border: none;
+            border-radius: 6px;
+            outline: none;
+            width: 100%;
+            max-width: 200px;
+            font-size: 16px;
+            margin-bottom: 1rem;
+        }
+
+        button {
+            background: #64ffda;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            color: #2c2c2c;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #52e0c4;
+        }
+
+        #output {
+            margin-top: 1.5rem;
+            font-size: 16px;
+            text-align: left;
+            line-height: 1.5;
+            background: #3a3a3a;
+            border-radius: 8px;
+            padding: 1rem;
+            color: #ffffff;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Fibonacci Generator</h1>
+        <p>Enter the number of Fibonacci terms:</p>
+        <input type="number" id="fibonacciInput" placeholder="Enter a number">
+        <button onclick="generateFibonacci()">Submit</button>
+        <div id="output"></div>
+    </div>
+
+    <script>
+        function generateFibonacci() {
+            const num = parseInt(document.getElementById("fibonacciInput").value);
+            const outputDiv = document.getElementById("output");
+
+            if (isNaN(num) || num <= 0) {
+                outputDiv.textContent = "Please enter a positive integer.";
+                return;
+            }
+
+            let fibSequence = [];
+            for (let i = 0; i < num; i++) {
+                if (i === 0) {
+                    fibSequence.push(0);
+                } else if (i === 1) {
+                    fibSequence.push(1);
+                } else {
+                    fibSequence.push(fibSequence[i - 1] + fibSequence[i - 2]);
+                }
+            }
+
+            outputDiv.textContent = `Fibonacci Sequence:\n${fibSequence.join(", ")}`;
+        }
+    </script>
+</body>
+</html>
